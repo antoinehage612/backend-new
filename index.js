@@ -7,7 +7,7 @@ const menuRoutes = require("./routes/menuRoutes");
 const app = express();
 app.use(
   cors({
-    origin: "*",
+    origin: "http://localhost:3000",
   })
 );
 console.log("sdssd");
