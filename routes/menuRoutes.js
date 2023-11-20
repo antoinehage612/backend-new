@@ -1,10 +1,7 @@
-// routes/menuRoutes.js
-
 const express = require("express");
 const router = express.Router();
 const MenuItem = require("../models/menuItemModel");
 
-// GET all menu items
 router.get("/", async (req, res) => {
   try {
     const menuItems = await MenuItem.find();
@@ -15,19 +12,17 @@ router.get("/", async (req, res) => {
   }
 });
 
-// POST a new menu item
 router.post("/", async (req, res) => {
   try {
     const newItem = new MenuItem(req.body);
-    const savedItem = await newItem.save();
-    res.json(savedItem);
+    await newItem.save();
+    res.json(newItem);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
-// PUT/UPDATE a menu item by ID
 router.put("/:id", async (req, res) => {
   const itemId = req.params.id;
   try {
@@ -41,7 +36,6 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-// DELETE a menu item by ID
 router.delete("/:id", async (req, res) => {
   const itemId = req.params.id;
   try {
