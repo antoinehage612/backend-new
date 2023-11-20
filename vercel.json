@@ -1,15 +1,29 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "./index.js",
-      "use": "@vercel/node"
-    }
-  ],
   "routes": [
     {
-      "src": "/(.*)",
-      "dest": "/"
+      "handle": "compression"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "https://backend-q85tk5bwl-antoinehage612s-projects.vercel.app/api/$1",
+      "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"]
+    }
+  ],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "http://localhost:3000"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET,POST,PUT,DELETE,OPTIONS,PATCH"
+        },
+        { "key": "Access-Control-Allow-Headers", "value": "*" }
+      ]
     }
   ]
 }
