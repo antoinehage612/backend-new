@@ -10,6 +10,7 @@ app.use(
     origin: "*",
   })
 );
+console.log("sdssd");
 
 app.use(express.json());
 
